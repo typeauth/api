@@ -33,7 +33,6 @@ Then, initialize the `typeauth` instance with your desired options:
 const typeauth = new typeauth({
   appId: "YOUR_APP_ID",
   // Optional configuration options
-  baseUrl: "https://api.typeauth.com",
   tokenHeader: "Authorization",
   disableTelemetry: false,
   maxRetries: 5,
@@ -44,23 +43,25 @@ const typeauth = new typeauth({
 To authenticate a request, call the `authenticate` method with the request object:
 
 ```typescript
-async function handleRequest(req: Request): Promise<Response> {
-  const { result, error } = await typeauth.authenticate(req);
+export default {
+  async fetch(request, env, ctx) {
+    const { result, error } = await typeauth.authenticate(req);
 
-  if (error) {
-    console.error(error.message);
-    return new Response(JSON.stringify({ error: "Unauthorized" }), {
-      status: 401,
+    if (error) {
+      console.error(error.message);
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // Protected route logic
+    return new Response(JSON.stringify({ message: "Access granted" }), {
+      status: 200,
       headers: { "Content-Type": "application/json" },
     });
-  }
-
-  // Protected route logic
-  return new Response(JSON.stringify({ message: "Access granted" }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
-}
+  },
+};
 ```
 
 ## Configuration Options
@@ -116,4 +117,5 @@ async function handleRequest(req: Request): Promise<Response> {
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request on the this GitHub repository.
+
 # api-v8

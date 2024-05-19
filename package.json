@@ -1,6 +1,6 @@
 {
   "name": "@typeauth/api",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "@typeauth/api is a TypeScript library that simplifies the authentication process for your API applications running in V8 runtimes. It's a wrapper around the authentication API endpoint.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -24,7 +24,7 @@
   ],
   "author": "typeuath dev",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.12",
     "ts-jest": "^29.1.2",

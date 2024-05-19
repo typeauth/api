@@ -1,4 +1,4 @@
-import { Typeauth, TypeauthOptions } from "./src/index";
+import { Typeauth, TypeauthOptions } from ".";
 
 describe("Typeauth", () => {
   let typeauth: Typeauth;
